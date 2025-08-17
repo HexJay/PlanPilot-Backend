@@ -1,0 +1,5 @@
+spring:
+  config:
+    name: PlanPilot-AI-Agent-Backend-app
+  profiles:
+    active: dev
