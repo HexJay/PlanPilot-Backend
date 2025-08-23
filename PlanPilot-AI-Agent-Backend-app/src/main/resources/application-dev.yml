@@ -14,6 +14,10 @@ thread:
 
 # 数据库配置；启动时配置数据库资源信息
 spring:
+  ai:
+    openai:
+      base-url: https://api.deepseek.com
+      api-key: sk-d5686036547f4afdb59bdf147934b9ac
   datasource:
     username: root
     password: 123456
