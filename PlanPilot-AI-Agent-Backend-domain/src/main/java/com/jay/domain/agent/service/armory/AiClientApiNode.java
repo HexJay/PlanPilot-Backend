@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.openai.api.OpenAiApi;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -20,11 +21,15 @@ import java.util.List;
 @Slf4j
 @Service
 public class AiClientApiNode extends AbstractArmorySupport {
+
+    @Resource
+    private AiClientToolMcpNode aiClientToolMcpNode;
+
     @Override
     protected String doApply(ArmoryCommandEntity requestParameter, DefaultArmoryStrategyFactory.DynamicContext dynamicContext) throws Exception {
         log.info("Ai Agent 构建，API 构建节点 {}", JSON.toJSONString(requestParameter));
 
-        List<AiClientApiVO> aiClientApiList = dynamicContext.getValue(AiAgentEnumVO.AI_CLIENT_API.getDataName());
+        List<AiClientApiVO> aiClientApiList = dynamicContext.getValue(dataName());
 
         if (aiClientApiList == null || aiClientApiList.isEmpty()) {
             log.warn("没有需要被初始化的 ai client api");
@@ -41,7 +46,7 @@ public class AiClientApiNode extends AbstractArmorySupport {
                     .build();
 
             // 注册 OpenAiApi Bean 对象
-            registerBean(AiAgentEnumVO.AI_CLIENT_API.getBeanName(aiClientApiVO.getApiId()), OpenAiApi.class, openAiApi);
+            registerBean(beanName(aiClientApiVO.getApiId()), OpenAiApi.class, openAiApi);
         }
 
 
@@ -50,6 +55,16 @@ public class AiClientApiNode extends AbstractArmorySupport {
 
     @Override
     public StrategyHandler<ArmoryCommandEntity, DefaultArmoryStrategyFactory.DynamicContext, String> get(ArmoryCommandEntity armoryCommandEntity, DefaultArmoryStrategyFactory.DynamicContext dynamicContext) throws Exception {
-        return defaultStrategyHandler;
+        return aiClientToolMcpNode;
+    }
+
+    @Override
+    protected String beanName(String beanId) {
+        return AiAgentEnumVO.AI_CLIENT_API.getBeanName(beanId);
+    }
+
+    @Override
+    protected String dataName() {
+        return AiAgentEnumVO.AI_CLIENT_API.getDataName();
     }
 }

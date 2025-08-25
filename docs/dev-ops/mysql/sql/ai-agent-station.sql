@@ -209,10 +209,9 @@ LOCK TABLES `ai_client_api` WRITE;
 
 INSERT INTO `ai_client_api` (`id`, `api_id`, `base_url`, `api_key`, `completions_path`, `embeddings_path`, `status`,
                              `create_time`, `update_time`)
-VALUES (1, '1001', 'https://apis.itedus.cn', 'sk-lIqVNiHon00O6veJ15Cc57DaF5Dd401f93B3A107B4B3677e',
-        'v1/chat/completions', 'v1/embeddings', 1, '2025-06-14 12:33:22', '2025-06-14 12:33:22'),
-       (2, '1002', 'https://api.deepseek.com', 'sk-42f8054e41214289be531791c5f59a28',
-        '', '', 1, '2025-06-14 12:33:22', '2025-06-14 12:33:22');
+VALUES (1, '1001', 'https://apis.itedus.cn', 'sk-SkhkrDzvU5hLCj8U5f980172AdC642C591C209B7676dE5D1',
+        'v1/chat/completions', 'v1/embeddings', 1, '2025-06-14 12:33:22', '2025-07-05 16:40:21'),
+       (2, '1002', 'https://api.deepseek.com', 'sk-42f8054e41214289be531791c5f59a28', '', '', 1, default, default);
 /*!40000 ALTER TABLE `ai_client_api`
     ENABLE KEYS */;
 UNLOCK TABLES;
@@ -245,16 +244,20 @@ LOCK TABLES `ai_client_config` WRITE;
 /*!40000 ALTER TABLE `ai_client_config`
     DISABLE KEYS */;
 
-INSERT INTO `ai_client_config` (`id`, `source_type`, `source_id`, `target_type`, `target_id`, `ext_param`, `status`,
+INSERT INTO `ai_client_config` (`source_type`, `source_id`, `target_type`, `target_id`, `ext_param`, `status`,
                                 `create_time`, `update_time`)
-VALUES (1, 'model', '2001', 'tool_mcp', '5001', '\"\"', 1, '2025-06-14 12:46:49', '2025-06-14 12:47:43'),
-       (2, 'model', '2001', 'tool_mcp', '5002', '\"\"', 1, '2025-06-14 12:46:49', '2025-06-14 12:47:43'),
-       (3, 'model', '2001', 'tool_mcp', '5003', '\"\"', 1, '2025-06-14 12:46:49', '2025-06-14 12:47:43'),
-       (4, 'model', '2001', 'tool_mcp', '5004', '\"\"', 1, '2025-06-14 12:46:49', '2025-06-14 12:47:43'),
-       (5, 'client', '3001', 'advisor', '4001', '\"\"', 1, '2025-06-14 12:46:49', '2025-06-14 12:49:46'),
-       (6, 'client', '3001', 'prompt', '6001', '\"\"', 1, '2025-06-14 12:46:49', '2025-06-14 12:50:13'),
-       (7, 'client', '3001', 'prompt', '6002', '\"\"', 1, '2025-06-14 12:46:49', '2025-06-14 12:50:13'),
-       (8, 'client', '3001', 'model', '2001', '\"\"', 1, '2025-06-14 12:46:49', '2025-06-14 12:50:13');
+VALUES ('model', '2001', 'tool_mcp', '5001', '\"\"', 0, '2025-06-14 12:46:49', '2025-07-05 13:46:27'),
+       ('model', '2001', 'tool_mcp', '5002', '\"\"', 0, '2025-06-14 12:46:49', '2025-07-05 13:46:29'),
+       ('model', '2001', 'tool_mcp', '5003', '\"\"', 1, '2025-06-14 12:46:49', '2025-06-14 12:47:43'),
+       ('model', '2001', 'tool_mcp', '5005', '\"\"', 0, '2025-06-14 12:46:49', '2025-07-05 16:44:40'),
+       ('model', '2002', 'tool_mcp', '5001', '\"\"', 0, '2025-06-14 12:46:49', '2025-07-05 13:46:27'),
+       ('model', '2002', 'tool_mcp', '5002', '\"\"', 0, '2025-06-14 12:46:49', '2025-07-05 13:46:29'),
+       ('model', '2002', 'tool_mcp', '5003', '\"\"', 1, '2025-06-14 12:46:49', '2025-06-14 12:47:43'),
+       ('model', '2002', 'tool_mcp', '5005', '\"\"', 0, '2025-06-14 12:46:49', '2025-07-05 16:44:40'),
+       ('client', '3001', 'advisor', '4001', '\"\"', 1, '2025-06-14 12:46:49', '2025-06-14 12:49:46'),
+       ('client', '3001', 'prompt', '6001', '\"\"', 1, '2025-06-14 12:46:49', '2025-06-14 12:50:13'),
+       ('client', '3001', 'prompt', '6002', '\"\"', 1, '2025-06-14 12:46:49', '2025-06-14 12:50:13'),
+       ('client', '3001', 'model', '2001', '\"\"', 1, '2025-06-14 12:46:49', '2025-06-14 12:50:13');
 
 /*!40000 ALTER TABLE `ai_client_config`
     ENABLE KEYS */;
@@ -290,7 +293,8 @@ LOCK TABLES `ai_client_model` WRITE;
 
 INSERT INTO `ai_client_model` (`id`, `model_id`, `api_id`, `model_name`, `model_type`, `status`, `create_time`,
                                `update_time`)
-VALUES (1, '2001', '1001', 'gpt-4.1-mini', 'openai', 1, '2025-06-14 12:33:47', '2025-06-14 12:33:47');
+VALUES (1, '2001', '1001', 'gpt-4.1-mini', 'openai', 1, '2025-06-14 12:33:47', '2025-06-14 12:33:47'),
+       (2, '2002', '1002', 'deepseek-chat', 'deepseek', 1, default, default);
 
 /*!40000 ALTER TABLE `ai_client_model`
     ENABLE KEYS */;
@@ -407,9 +411,9 @@ VALUES (6, '5001', 'CSDN自动发帖', 'sse',
        (7, '5002', '微信公众号消息通知', 'sse',
         '{\n	\"baseUri\":\"http://192.168.1.108:8102\",\n        \"sseEndpoint\":\"/sse\"\n}', 180, 1,
         '2025-06-14 12:36:30', '2025-06-14 12:36:40'),
-       (8, '5003', '本地文件操作', 'stdio',
+       (8, '5003', 'filesystem', 'stdio',
         '{\n    \"filesystem\": {\n        \"command\": \"npx\",\n        \"args\": [\n            \"-y\",\n            \"@modelcontextprotocol/server-filesystem\",\n            \"/Users/fuzhengwei/Desktop\",\n            \"/Users/fuzhengwei/Desktop\"\n        ]\n    }\n}',
-        180, 1, '2025-06-14 12:36:30', '2025-06-14 12:36:40'),
+        180, 1, '2025-06-14 12:36:30', '2025-07-05 16:31:44'),
        (9, '5004', 'g-search', 'stdio',
         '{\n    \"g-search\": {\n        \"command\": \"npx\",\n        \"args\": [\n            \"-y\",\n            \"g-search-mcp\"\n        ]\n    }\n}',
         180, 1, '2025-06-14 12:36:30', '2025-06-14 12:36:40'),

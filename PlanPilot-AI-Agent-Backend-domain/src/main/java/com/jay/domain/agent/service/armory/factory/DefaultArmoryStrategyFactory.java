@@ -30,7 +30,6 @@ public class DefaultArmoryStrategyFactory {
         return rootNode;
     }
 
-
     @Data
     @Builder
     @AllArgsConstructor
