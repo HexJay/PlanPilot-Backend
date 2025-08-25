@@ -39,3 +39,6 @@ build/
 /.idea/
 /data/log/log_error.log
 /data/log/log_info.log
+/PlanPilot-AI-Agent-Backend-app/data/log/log-info-2025-08-23.0.log
+/PlanPilot-AI-Agent-Backend-app/data/log/log_error.log
+/PlanPilot-AI-Agent-Backend-app/data/log/log_info.log
